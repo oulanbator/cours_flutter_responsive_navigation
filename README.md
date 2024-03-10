@@ -46,3 +46,10 @@ La plupart des éléments nécessaires ont déjà été implémentés à l'étap
 - _largeScreenLayout() devrait cette fois renvoyer un Row
 - Le premier élément sera le NavigationRail avec les différents items de navigation, il doit modifier le State de "selectedIndex" en fonction de la sélection de l'utilisateur
 - Le deuxième élément doit prendre tout l'espace disponible et afficher mainArea
+
+## Bonus - Effets de style
+Quelques pistes pour améliorer l'esthétique de l'application. A regarder ensemble.
+
+> https://api.flutter.dev/flutter/widgets/ColoredBox-class.html
+
+> https://api.flutter.dev/flutter/widgets/AnimatedSwitcher-class.html
