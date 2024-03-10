@@ -13,6 +13,9 @@ L'idée est d'utiliser le Widget LayoutBuilder pour avoir accès à la taille de
 - Créer les fonctions _smallScreenLayout() et _largeScreenLayout() qui doivent retourner (pour le moment) un texte centré à l'écran
 - Si "constraints.maxWidth" est inférieur à 450, retourner _smallScreenLayout(), sinon retourner _largeScreenLayout()
 
+> https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html
+
+
 ## Exercice 2 - Implémenter BottomNavigationBar
 Attention, cette fois on ne peut pas utiliser la propriété de Scaffold "bottomNavigationBar" car on ne souhaite avoir cette forme de navigation que dans le cas où la largeur de l'écran est réduite.
 A la place, on va devoir profiter du fait que MainNavigation est Stateful pour implémenter _smallScreenLayout() correctement.
