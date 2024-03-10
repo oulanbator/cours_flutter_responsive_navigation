@@ -37,6 +37,10 @@ Les propriétés de NavigationRail sont un peu différentes de BottomNavigationB
 - la propriété **onDestinationSelected** joue le même joue que **onTap**
 - **selectedIndex** doit obligatoirement être fourni pour que la navigation fonctionne correctement
 - **extended** peut être fourni pour afficher le display "extended" du NavigationRail. On peut lui passer simplement **true** ou une condition comme **constraints.maxWidth >= 600** pour réagir à la taille de la fenêtre.
+- **backgroundColor** peut être fourni pour donner une couleur au NavigationRail
+
+D'autres propriétés existent :
+> https://api.flutter.dev/flutter/material/NavigationRail-class.html
 
 La plupart des éléments nécessaires ont déjà été implémentés à l'étape précédente. L'implémentation du layout large va être plus simple :
 - _largeScreenLayout() devrait cette fois renvoyer un Row
