@@ -27,3 +27,17 @@ A la place, on va devoir profiter du fait que MainNavigation est Stateful pour i
 - Le deuxième élément sera la BottomNavigationBar avec les différents items, et doit modifier le State de "selectedIndex" en fonction de la sélection de l'utilisateur
 - mainArea dépend de selectedIndex il devrait donc être marqué en late au même niveau que selectedIndex
 - dans la fonction build, utiliser un switch sur selectedIndex pour affecter un widget (Home, Profil, Likes) à mainArea
+
+> https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
+## Exercice 3 - Layout "large screen" - NavigationRail
+Le Widget NavigationRail va permettre d'implémenter la navigation avec un layout plus adapté à un écran large (desktop).
+Les propriétés de NavigationRail sont un peu différentes de BottomNavigationBar mais globalement les deux implémentations se ressemblent beaucoup :
+- la propriété **destinations** joue le même rôle ques **items** et liste des widgets **NavigationRailDestination**
+- la propriété **onDestinationSelected** joue le même joue que **onTap**
+- **selectedIndex** doit obligatoirement être fourni pour que la navigation fonctionne correctement
+- **extended** peut être fourni pour afficher le display "extended" du NavigationRail. On peut lui passer simplement **true** ou une condition comme **constraints.maxWidth >= 600** pour réagir à la taille de la fenêtre.
+
+- _largeScreenLayout() devrait cette fois renvoyer un Row
+- Le premier élément sera le NavigationRail avec les différents items de navigation
+- Le deuxième élément doit prendre tout l'espace disponible et afficher mainArea
