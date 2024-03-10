@@ -23,5 +23,7 @@ A la place, on va devoir profiter du fait que MainNavigation est Stateful pour i
 - On va avoir besoin d'une variable selectedIndex pour stocker l'index sélectionné du menu de navigation
 - On va avoir besoin d'une variable mainArea pour stocker une référence au widget que l'on souhaite afficher en fonction de la navigation
 - _smallScreenLayout renvoie un Column avec deux éléments
-- Le deuxième élément sera la BottomNavigationBar avec les différents items, et doit faire le lien avec la logique de navigation (pour déterminer mainArea en fonction de l'item sélectionné)
-- Le premier élément doit prendre tout l'espace restant disponible et afficher mainArea
+- Le premier élément doit prendre tout l'espace disponible et afficher mainArea
+- Le deuxième élément sera la BottomNavigationBar avec les différents items, et doit modifier le State de "selectedIndex" en fonction de la sélection de l'utilisateur
+- mainArea dépend de selectedIndex il devrait donc être marqué en late au même niveau que selectedIndex
+- dans la fonction build, utiliser un switch sur selectedIndex pour affecter un widget (Home, Profil, Likes) à mainArea
