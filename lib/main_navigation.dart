@@ -1,3 +1,6 @@
+import 'package:cours_flutter_responsive_navigation/screens/home.dart';
+import 'package:cours_flutter_responsive_navigation/screens/likes.dart';
+import 'package:cours_flutter_responsive_navigation/screens/profil.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigation extends StatefulWidget {
@@ -8,15 +11,18 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
+  var selectedIndex = 0;
+  late Widget mainArea;
+
   @override
   Widget build(BuildContext context) {
+    _selectMainAreaDestination();
+
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth < 450) {
-          print("Small screen");
           return _smallScreenLayout(context);
         } else {
-          print("Large screen");
           return _largeScreenLayout(context);
         }
       },
@@ -24,9 +30,33 @@ class _MainNavigationState extends State<MainNavigation> {
   }
 
   _smallScreenLayout(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Small Screen"),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(child: mainArea),
+          BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Profil",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: "Likes",
+              ),
+            ],
+            currentIndex: selectedIndex,
+            onTap: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+          )
+        ],
       ),
     );
   }
@@ -37,5 +67,21 @@ class _MainNavigationState extends State<MainNavigation> {
         child: Text("Large Screen"),
       ),
     );
+  }
+
+  void _selectMainAreaDestination() {
+    switch (selectedIndex) {
+      case 0:
+        mainArea = Home();
+        break;
+      case 1:
+        mainArea = Profil();
+        break;
+      case 2:
+        mainArea = Likes();
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
+    }
   }
 }
