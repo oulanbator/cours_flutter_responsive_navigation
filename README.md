@@ -38,6 +38,7 @@ Les propriétés de NavigationRail sont un peu différentes de BottomNavigationB
 - **selectedIndex** doit obligatoirement être fourni pour que la navigation fonctionne correctement
 - **extended** peut être fourni pour afficher le display "extended" du NavigationRail. On peut lui passer simplement **true** ou une condition comme **constraints.maxWidth >= 600** pour réagir à la taille de la fenêtre.
 
+
 - _largeScreenLayout() devrait cette fois renvoyer un Row
 - Le premier élément sera le NavigationRail avec les différents items de navigation
 - Le deuxième élément doit prendre tout l'espace disponible et afficher mainArea
