@@ -23,49 +23,71 @@ class _MainNavigationState extends State<MainNavigation> {
         if (constraints.maxWidth < 450) {
           return _smallScreenLayout(context);
         } else {
-          return _largeScreenLayout(context);
+          return _largeScreenLayout(context, constraints);
         }
       },
     );
   }
 
   _smallScreenLayout(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(child: mainArea),
-          BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Profil",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: "Likes",
-              ),
-            ],
-            currentIndex: selectedIndex,
-            onTap: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        Expanded(child: mainArea),
+        BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profil",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: "Likes",
+            ),
+          ],
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        )
+      ],
     );
   }
 
-  _largeScreenLayout(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Large Screen"),
-      ),
+  _largeScreenLayout(BuildContext context, BoxConstraints constraints) {
+    return Row(
+      children: [
+        NavigationRail(
+          backgroundColor: const Color.fromARGB(255, 255, 248, 226),
+          extended: constraints.maxWidth >= 600,
+          destinations: const [
+            NavigationRailDestination(
+              icon: Icon(Icons.home),
+              label: Text('Home'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(Icons.person),
+              label: Text('Profil'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(Icons.favorite),
+              label: Text('Likes'),
+            ),
+          ],
+          selectedIndex: selectedIndex,
+          onDestinationSelected: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        ),
+        Expanded(child: mainArea)
+      ],
     );
   }
 
