@@ -13,26 +13,37 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   var selectedIndex = 0;
   late Widget mainArea;
+  late Widget styledMainArea;
 
   @override
   Widget build(BuildContext context) {
     _selectMainAreaDestination();
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < 450) {
-          return _smallScreenLayout(context);
-        } else {
-          return _largeScreenLayout(context, constraints);
-        }
-      },
+    styledMainArea = ColoredBox(
+      color: Theme.of(context).colorScheme.surfaceVariant,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 1000),
+        child: mainArea,
+      ),
+    );
+
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 450) {
+            return _smallScreenLayout(context);
+          } else {
+            return _largeScreenLayout(context, constraints);
+          }
+        },
+      ),
     );
   }
 
   _smallScreenLayout(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: mainArea),
+        Expanded(child: styledMainArea),
         BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
@@ -63,7 +74,6 @@ class _MainNavigationState extends State<MainNavigation> {
     return Row(
       children: [
         NavigationRail(
-          backgroundColor: const Color.fromARGB(255, 255, 248, 226),
           extended: constraints.maxWidth >= 600,
           destinations: const [
             NavigationRailDestination(
@@ -86,7 +96,7 @@ class _MainNavigationState extends State<MainNavigation> {
             });
           },
         ),
-        Expanded(child: mainArea)
+        Expanded(child: styledMainArea)
       ],
     );
   }
